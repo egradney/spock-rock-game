@@ -79,6 +79,11 @@ h2 {
   margin-left: 5rem;
 }
 
+.reset-icon span {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
 .result-container {
   display: flex;
   justify-content: center;
