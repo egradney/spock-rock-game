@@ -20,12 +20,12 @@ const computerSpock = document.getElementById('computerSpock');
 const allGameIcons = document.querySelectorAll('.far');
 const resultText = document.getElementById('resultText');
 
-const choices = {
-  rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
-  paper: { name: 'Paper', defeats: ['rock', 'spock'] },
-  scissors: { name: 'Scissors', defeats: ['paper', 'lizard'] },
-  lizard: { name: 'Lizard', defeats: ['paper', 'spock'] },
-  spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
+const possiblePlays = {
+  Rock: { name: 'Rock', defeats: ['Scissors', 'Lizard'] },
+  Paper: { name: 'Paper', defeats: ['Rock', 'Spock'] },
+  Scissors: { name: 'Scissors', defeats: ['Paper', 'Lizard'] },
+  Lizard: { name: 'Lizard', defeats: ['Paper', 'Spock'] },
+  Spock: { name: 'Spock', defeats: ['Scissors', 'Rock'] },
 };
 
 let playerScoreNumber = 0;
@@ -55,39 +55,20 @@ function resetAll() {
 window.resetAll = resetAll;
 
 // Random computer choice
-const computerChoices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+const computerChoices = [{'Rock': computerRock}, {'Paper': computerPaper}, {'Scissors':computerScissors}, {'Lizard':computerLizard}, {'Spock':computerSpock}];
+let computerChoiceElText = '';
+let computerChoiceJS = '';
 function computerRandomChoice() {
   const computerChoiceNumber = Math.floor(Math.random() * computerChoices.length);
   computerChoice = computerChoices[computerChoiceNumber];
-  console.log(computerChoiceNumber);
+  computerChoiceElText = String(Object.keys(computerChoice));
+  computerChoiceJS = Object.values(computerChoice)[0];
 }
 
 // Add 'selected' styling & computerChoice
 function displayComputerChoice() {
-  switch (computerChoice) {
-    case 'rock':
-      computerRock.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Rock';
-      break;
-    case 'paper':
-      computerPaper.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Paper';
-      break;
-    case 'scissors':
-      computerScissors.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Scissors';
-      break;
-    case 'lizard':
-      computerLizard.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Lizard';
-      break;
-    case 'spock':
-      computerSpock.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Spock';
-      break;
-    default:
-      break;
-  }
+      computerChoiceJS.classList.add('selected');
+      computerChoiceEl.textContent = `--- ${computerChoiceElText}`;
 }
 
 // Check result, increase scores, update resultText
@@ -95,8 +76,8 @@ function updateScore(playerChoice) {
   if (playerChoice === computerChoice) {
     resultText.textContent = "It's a tie.";
   } else {
-    const choice = choices[playerChoice];
-    if (choice.defeats.indexOf(computerChoice) > -1) {
+    const results = possiblePlays[playerChoice];
+    if (results.defeats.indexOf(computerChoice) > -1) {
       startConfetti();
       resultText.textContent = 'You Won!';
       playerScoreNumber++;
@@ -118,33 +99,13 @@ function checkResult(playerChoice) {
 }
 
 // Passing player selection value and styling icons
+const playerChoices = [{'Rock': playerRock}, {'Paper': playerPaper}, {'Scissors': playerScissors}, {'Lizard':playerLizard}, {'Spock':playerSpock}];
+let playerChoiceJS = '';
 function select(playerChoice) {
+  playerChoiceJS = Object.values(playerChoices.filter(obj => String(Object.keys(obj)) === playerChoice)[0])[0];
   checkResult(playerChoice);
-  // Add 'selected' styling & playerChoice
-  switch (playerChoice) {
-    case 'rock':
-      playerRock.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Rock';
-      break;
-    case 'paper':
-      playerPaper.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Paper';
-      break;
-    case 'scissors':
-      playerScissors.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Scissors';
-      break;
-    case 'lizard':
-      playerLizard.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Lizard';
-      break;
-    case 'spock':
-      playerSpock.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Spock';
-      break;
-    default:
-      break;
-  }
+  playerChoiceJS.classList.add('selected');
+  playerChoiceEl.textContent = ` --- ${playerChoice}`;
 }
 window.select = select;
 
