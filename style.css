@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  margin: 0;
+  min-height: 100vh;
+  background: whitesmoke;
+  font-family: Lato, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  width: 53rem;
+  height: 60rem;
+  background: white;
+  box-shadow: 0 1rem 2rem -.5rem rgba(0, 0, 0, 0.5);
+  border-radius: .5rem;
+}
+
+.header {
+  background: dodgerblue;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.player-container {
+  margin: 5rem;
+}
+
+h2 {
+  margin-bottom: 2rem;
+}
+
+.far {
+  font-size: 5rem;
+  margin-right: 4rem;
+}
+
+#player .far,
+#player .choice {
+  color: dodgerblue;
+  cursor: pointer;
+}
+
+#computer .far,
+#computer .choice {
+  color: rgb(235, 43, 52);
+}
+
+#player .far:last-of-type,
+#computer .far:last-of-type {
+  margin-right: 0;
+}
+
+.selected {
+  color: black !important;
+}
+
+.reset-icon {
+  font-size: 3rem;
+  cursor: pointer;
+  margin-left: 5rem;
+}
+
+.result-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-text {
+  font-size: 4rem;
+  margin: unset;
+  margin-top: 2rem;
+}
+
+/* Media Query: Large Smartphone (Vertical) */
+@media screen and (max-width: 60rem) {
+  .game-container {
+    width: 95%;
+    height: 58rem;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  .player-container {
+    margin: 5rem 0 2.5rem 2.5rem;
+  }
+
+  .far {
+    margin-right: 2rem;
+  }
+
+  .reset-icon {
+    margin-top: 2.5rem;
+    margin-left: 2.5rem;
+  }
+}
+
+/* Media Query: iPhone (Vertical) */
+@media screen and (max-width: 600px) {
+
+  .far {
+    margin-right: 1rem;
+  }
+
+  .reset-icon {
+    margin-top: 1.5rem;
+  }
+
+  .result-container {
+    margin: 0 2rem;
+  } 
+
+  html {
+    font-size: 50%;
+  }
+}
